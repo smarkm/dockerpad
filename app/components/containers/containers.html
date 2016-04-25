@@ -1,0 +1,29 @@
+<b>Containers({{containers.length}})</b>
+<button type="button" class="btn btn-xs btn-success" ng-click="showAll()">{{btn_R_A}} </button>
+			<table class="table">
+				<thead>
+					<tr class="">
+						<th>ID</th>
+						<th>Name</th>
+						<th>Image</th>
+						<th>Status</th>
+						<th>Command</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="o in containers" >
+						<td style="color: gray;">{{o.Id | limitTo:12}}</td>
+						<td>{{o.Names[0]}}</td>
+						<td>{{o.Image}}</td>
+						<td><label class="label label-success">{{o.Status}}</label></td>
+						<td>{{o.Command}}</td>
+						<td>
+							<button type="button" class="btn btn-info btn-xs">Pause</button>
+							<button type="button" class="btn btn-success btn-xs" ng-click="startContainer(o.Id,o.Names[0])">Start</button>
+							<button type="button" class="btn btn-warning btn-xs" ng-click="stopContainer(o.Id,o.Names[0])">Stop</button>
+							<button type="button" class="btn btn-danger btn-xs" ng-click="deleteContainer(o.Id,o.Names[0])">Remove</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>

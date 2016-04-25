@@ -1,0 +1,32 @@
+Networks Total:{{networks.length}}
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Driver</th>
+						<th>Scope</th>
+            <th>IPAM Driver</th>
+            <th>IPAM Subnet</th>
+            <th>IPAM Gateway</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="o in networks" class="info">
+						<td>{{o.Id | limitTo:12}}</td>
+						<td><a href="#networkInfo/{{o.Id}}">{{o.Name}}</a></td>
+						<td>{{o.Driver}}</td>
+						<td>{{o.Scope}}</td>
+            <td>{{o.IPAM.Driver}}</td>
+            <td>{{o.IPAM.Config[0].Subnet}}</td>
+            <td>{{o.IPAM.Config[0].Gateway}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+  </div>
+</div>

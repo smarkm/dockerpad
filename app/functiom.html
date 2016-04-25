@@ -1,0 +1,62 @@
+<!--
+	作者：smark@freecoop.net
+	时间：2016-04-14
+	描述：左侧菜单
+-->
+<ul id="main-nav" class="nav nav-tabs nav-stacked" style="">
+	<li class="">
+		<a href="#/">
+			<i class="glyphicon glyphicon-th-large"></i> {{ 'L_F_M_Dashborad' | translate}}
+		</a>
+	</li>
+	<li>
+		<a href="#hostsMenu" class="nav-header collapsed" data-toggle="collapse">
+			<i class="glyphicon glyphicon-cog"></i> {{ 'L_F_M_Hosts' | translate}}
+			<span class="pull-right glyphicon glyphicon-chevron-right"></span>
+		</a>
+		<ul id="hostsMenu" class="nav nav-list collapse secondmenu" style="height: 0px;">
+			<li><a href="#" ng-click="currentPage='ss.html'"><i class="glyphicon glyphicon-eye-open"></i>Cluster</a></li>
+			<li><a href="#" ng-click="currentPage='ss.html'"><i class="glyphicon glyphicon-eye-open"></i>Host</a></li>
+		</ul>
+		<!--<ul id="hostsMenu" class="nav nav-list collapse secondmenu" style="height: 0px;">
+		</ul>-->
+	</li>
+	<li>
+		<a href="#imagesMenu" class="nav-header collapsed" ng-click="currentPage='template/images.html'" data-toggle="collapse">
+			<i class="glyphicon glyphicon-credit-card"></i> {{ 'L_F_M_Images' | translate}}
+			<span class="pull-right glyphicon glyphicon-chevron-right"></span>
+		</a>
+		<!-- <ul id="imagesMenu" class="nav nav-list collapse secondmenu" style="height: 0px;">
+			<li><a href="#" ng-click="currentPage='ss.html'"><i class="glyphicon glyphicon-eye-open"></i>日志查看</a></li>
+		</ul> -->
+	</li>
+
+	<li>
+		<a href="#containers" >
+			<i class="glyphicon glyphicon-globe"></i> {{ 'L_F_M_Containers' | translate}}
+			<span class="label label-warning pull-right">5</span>
+		</a>
+	</li>
+
+	<li>
+		<a href="#networks">
+			<i class="glyphicon glyphicon-calendar"></i> {{ 'L_F_M_Networks' | translate}}
+		</a>
+	</li>
+	<li>
+		<a href="#users">
+			<i class="glyphicon glyphicon-user"></i> {{ 'L_F_M_Users' | translate}}
+		</a>
+	</li>
+	<li>
+		<a href="#info">
+			<i class="glyphicon glyphicon-calendar"></i> {{ 'L_F_M_Info' | translate}}
+		</a>
+	</li>
+	<li>
+		<a href="#about">
+			<i class="glyphicon glyphicon-fire"></i> {{ 'L_F_M_About' | translate}}
+		</a>
+	</li>
+
+</ul>

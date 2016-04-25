@@ -1,0 +1,25 @@
+Images Total:{{images.length}}
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span12">
+			<table class="table">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Repo</th>
+						<th>VirtualSize</th>
+						<th>Created</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="o in images" class="info">
+						<td>{{o.Id | limitTo:12}}</td>
+						<td>{{o.RepoTags[0]}}</td>
+						<td>{{o.Created | date: "short"}}</td>
+						<td>{{o.VirtualSize}}B</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
