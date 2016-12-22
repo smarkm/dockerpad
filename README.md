@@ -5,4 +5,4 @@
 ## Dependancies
 1 Angular
 2 Bootstrap
-3 Golang
+3 Spring Boot
