@@ -1,4 +1,4 @@
-package org.smark;
+package org.smark.dockerpad;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
