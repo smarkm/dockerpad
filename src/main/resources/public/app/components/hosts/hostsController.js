@@ -20,7 +20,7 @@ app.controller('hostsController',function($scope,$http,$rootScope){
 		$scope.name = name;
 		$scope.host = host;
 		$scope.port = port;
-		$http.post("/dockerpad/edit",{Name:name,Host:host,Port:port,"key":k})
+		$http.post("/dockerpad/edit",{name:name,Host:host,Port:port,"key":k})
 			.success(function(rs){
 				$http.get("#hostsMenu")
 			})

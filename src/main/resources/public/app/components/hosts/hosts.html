@@ -11,11 +11,11 @@ Hosts({{hosts.length}}s)
 				</thead>
 				<tbody>
 					<tr ng-repeat="(k,o) in hosts"  >
-						<td>{{o.Name }}</td>
-						<td>{{o.Host}}</td>
-						<td>{{o.Port}}</td>
+						<td>{{o.name }}</td>
+						<td>{{o.host}}</td>
+						<td>{{o.port}}</td>
 						<td>
-							<button type="button" class="btn btn-info btn-xs" ng-click="editHost(o.Name,o.Host,o.Port,k)">Edit</button>
+							<button type="button" class="btn btn-info btn-xs" ng-click="editHost(o.name,o.host,o.port,k)">Edit</button>
 							<button type="button" class="btn btn-warning btn-xs" ng-click="removeHost(k)">Remove</button>
 							<button type="button" title="Use this host at current linked host" class="btn btn-link btn-xs" ng-click="useHost(k)">Use</button>
 						</td>
@@ -50,4 +50,4 @@ Hosts({{hosts.length}}s)
       </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
-</div><!-- /.modal -
+</div><!-- /.modal -->
