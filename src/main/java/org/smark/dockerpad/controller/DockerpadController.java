@@ -7,7 +7,10 @@ import org.smark.dockerpad.model.DockerHost;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+/**
+ * user,security and system 
+ * @author smark
+ */
 @Controller
 @RequestMapping("dockerpad")
 public class DockerpadController {
