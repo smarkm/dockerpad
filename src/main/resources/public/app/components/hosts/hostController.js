@@ -20,6 +20,7 @@ app.controller('hostController',function($scope,$http,$rootScope,$routeParams){
 			var containers = rs.data;
 			$scope.containers = containers;
 			$("#containerTitle").text("Containers("+containers.length+")")
+			$scope.containerChart();
 		})
 	}
 	$scope.loadNetworks = function(){
@@ -70,4 +71,31 @@ app.controller('hostController',function($scope,$http,$rootScope,$routeParams){
 		})
 	}
 	$scope.hello = function(){alert("hello")}
+	
+	$scope.containerChart = function(){
+		var chart;
+        var legend;
+        var cs =$scope.host.info;
+        var chartData = new Array();
+        chartData[0]= {type:"Running",count:cs.ContainersRunning};
+        chartData[1]= {type:"Paused",count:cs.ContainersPaused};
+        chartData[2]= {type:"Stopped",count:cs.ContainersStopped};
+        console.log(chartData)
+            // PIE CHART
+        chart = new AmCharts.AmPieChart();
+        chart.dataProvider = chartData;
+        chart.titleField = "type";
+        chart.valueField = "count";
+        chart.outlineColor = "#FFFFFF";
+        chart.outlineAlpha = 0.8;
+        chart.outlineThickness = 2;
+        
+        legend = new AmCharts.AmLegend();
+        legend.align = "center";
+        legend.markerType = "circle";
+        chart.balloonText = "[[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>";
+        chart.addLegend(legend);
+            // WRITE
+        chart.write("containerChart");
+	}
 })

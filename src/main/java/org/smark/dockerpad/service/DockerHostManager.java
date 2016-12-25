@@ -15,7 +15,7 @@ public class DockerHostManager {
 	}
 	
 	public static void init() {
-		DockerHost host = new DockerHost("Test", "192.168.10.129", "2375");
+		DockerHost host = new DockerHost("Test", "192.168.10.128", "2375");
 		DockerHostManager.add(host);
 	}
 	public static void add(DockerHost host){
