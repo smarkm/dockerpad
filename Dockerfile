@@ -1,4 +1,4 @@
-FROM scratch
+FROM openjdk:8-jre-alpine
 MAINTAINER smark
 ENV DP_HOME /dockerpad
 EXPOSE 80
