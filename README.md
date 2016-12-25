@@ -1,6 +1,6 @@
 #dockerpad
 ## Intro
-  This project is a Web UI for `Docker`,you should be no it's not official project.
+  This project is a Web UI for `Docker`.
 ## Get started
 ## Dependancies
 1 Angular
