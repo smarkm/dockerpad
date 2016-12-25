@@ -5,7 +5,7 @@ app.controller('hostsController',function($scope,$http,$rootScope){
 	})
 	$scope.addHost = function(){
 		//$scope.name = $scope.host = $scope.port = "";
-		$http.post("/dockerpad/add",{Name:$scope.name,Host:$scope.host,Port:$scope.port})
+		$http.post("/dockerpad/host/add",{name:$scope.name,host:$scope.host,port:$scope.port})
 			.success(function(rs){
 				$("#responsive").modal('toggle');
 				$http.get("/dockerpad/dockerhosts").then(function(rs){
@@ -20,12 +20,31 @@ app.controller('hostsController',function($scope,$http,$rootScope){
 		$scope.name = name;
 		$scope.host = host;
 		$scope.port = port;
-		$http.post("/dockerpad/edit",{name:name,Host:host,Port:port,"key":k})
+		$scope.key = k;
+		/*$http.post("/dockerpad/host/edit",{"host.name":name,"host.host":host,"host.port":port,"key":k})
 			.success(function(rs){
 				$http.get("#hostsMenu")
-			})
+			})*/
 		//alert(name+host+port)
 		$("#responsive").modal('toggle');
+		
+	}
+	$scope.updateHost = function(){
+		k = $scope.key;
+		if(k==undefined){
+			$scope.addHost();
+			return;
+		}
+		//$scope.name = $scope.host = $scope.port = "";
+		$http.post("/dockerpad/host/update",{"name":$scope.name,"host":$scope.host,"port":$scope.port,"key":k})
+			.success(function(rs){
+				$("#responsive").modal('toggle');
+				$http.get("/dockerpad/dockerhosts").then(function(rs){
+					$scope.hosts = rs.data;
+					console.log(rs)
+					$scope.name = $scope.host = $scope.port = "";
+				})
+			})
 		
 	}
 	$scope.removeHost = function(k){

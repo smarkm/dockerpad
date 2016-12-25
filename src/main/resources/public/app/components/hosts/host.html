@@ -1,0 +1,126 @@
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="#dashboard" target="_self" data-toggle="tab" id="host">Dashbord</a></li>
+  <li role="presentation"><a href="#image" target="_self" data-toggle="tab" ng-click="loadImages()" id="imageTitle">Images</a></li>
+  <li role="presentation"><a href="#container" target="_self" data-toggle="tab" ng-click="loadContainers()" id="containerTitle">Containers</a></li>
+  <li role="presentation"><a href="#network" target="_self" data-toggle="tab" ng-click="loadNetworks()" id="networkTitle">Networks</a></li>
+  <li role="presentation"><a href="#info" target="_self" data-toggle="tab">Info</a></li>
+</ul>
+<div id="myTabContent" class="tab-content">
+	<div class="tab-pane fade in active" id="dashboard">
+		<table class="table">
+			<thead>
+			</thead>
+			<tbody>
+				<tr class="active">
+					<td>Host</td>
+					<td>{{host.host}}</td>
+				</tr>
+				<tr class="">
+					<td>Port</td>
+					<td>{{host.port}}</td>
+				</tr>
+				<tr class="">
+					<td>OS</td>
+					<td>{{host.info.OperatingSystem}}</td>
+				</tr>
+				<tr class="">
+					<td>ServerVersion</td>
+					<td>{{host.info.ServerVersion}}</td>
+				</tr>
+				<tr class="">
+					<td>Images</td>
+					<td>{{host.info.Images}}</td>
+				</tr>
+				<tr class="">
+					<td>Containers</td>
+					<td>{{host.info.Containers}}</td>
+				</tr>
+		</table>
+	</div>
+	<div class="tab-pane fade" id="image">
+		<table class="table">
+			<thead>
+				<tr class="">
+					<th>RepoTags</th>
+					<th>Size</th>
+					<th>VirtualSize</th>
+					<th>ID</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in images"  >
+					<td>{{item.RepoTags[0]}}</td>
+					<td>{{item.Size}}</td>
+					<td>{{item.VirtualSize}}</td>
+					<td>{{item.Id}}</td>
+					<td>
+						<button type="button" class="btn btn-danger btn-xs" ng-click="deleteContainer(o.Id,o.Names[0])">Remove</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="tab-pane fade" id="container">
+			<table class="table">
+			<thead>
+				<tr class="">
+					<th>Names</th>
+					<th>Command</th>
+					<th>State</th>
+					<th>Status</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in containers"  >
+					<td>{{item.Names[0]}}</td>
+					<td>{{item.Command}}</td>
+					<td>{{item.State}}</td>
+					<td>{{item.Status}}</td>
+					<td>
+						<button type="button" class="btn btn-info btn-xs">Pause</button>
+						<button type="button" class="btn btn-success btn-xs" ng-click="startContainer(o.Id,o.Names[0])">Start</button>
+						<button type="button" class="btn btn-warning btn-xs" ng-click="stopContainer(o.Id,o.Names[0])">Stop</button>
+						<button type="button" class="btn btn-danger btn-xs" ng-click="deleteContainer(o.Id,o.Names[0])">Remove</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="tab-pane fade" id="network">
+		<table class="table">
+			<thead>
+				<tr class="">
+					<th>Name</th>
+					<th>Scope</th>
+					<th>Driver</th>
+					<th>ID</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="item in networks"  >
+					<td>{{item.Name}}</td>
+					<td>{{item.Scope}}</td>
+					<td>{{item.Driver}}</td>
+					<td>{{item.Id}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="tab-pane fade" id="info">
+		<table class="table">
+			<thead>
+			</thead>
+			<tbody>
+				<tr class="">
+					<td>Driver</td>
+					<td>{{host.info.Driver}}</td>
+				</tr>
+				<tr ng-repeat="item in host.info.DriverStatus"  >
+					<td>{{item[0]}}</td>
+					<td>{{item[1]}}</td>
+				</tr>
+		</table>
+	</div>
+</div>

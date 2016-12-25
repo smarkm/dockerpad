@@ -70,8 +70,12 @@ app.config(function($routeProvider) {
     .when('/about',{
     	templateUrl : 'app/components/about/about.html',
     	controller : 'abountController'
+    })
+    .when('/host/:id',{
+    	templateUrl : 'app/components/hosts/host.html',
+    	controller : 'hostController'
     }).otherwise({
-            redirectTo : '/'
+            redirectTo : '#ios'
         })
     //.otherwise();
 });
@@ -100,5 +104,5 @@ app.config(function($translateProvider) {
     L_F_M_Users: '用户管理',
     L_F_M_About: '关于'
   });
-   $translateProvider.preferredLanguage('en');
+   $translateProvider.preferredLanguage('zh');
 });

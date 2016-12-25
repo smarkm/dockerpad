@@ -1,12 +1,18 @@
 package org.smark.dockerpad.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.smark.dockerpad.model.DockerHost;
+import org.smark.dockerpad.service.DockerHostManager;
+import org.smark.dockerpad.util.DockerAPI;
+import org.smark.dockerpad.util.UrlBuilder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 /**
  * user,security and system 
  * @author smark
@@ -18,8 +24,70 @@ public class DockerpadController {
 	@RequestMapping("dockerhosts")
 	@ResponseBody
 	private Object hosts() {
-		List<DockerHost> hosts = new ArrayList<>();
-		hosts.add(new DockerHost("Test", "192.168.10.128", "2375"));
+		 Map<String, DockerHost> hosts = DockerHostManager.getDockerHosts();
 		return hosts;
 	}
+	
+	@RequestMapping("host")
+	@ResponseBody
+	private Object host(String id) {
+		System.out.println(id);
+		DockerHost host = DockerHostManager.get(id);
+		RestTemplate client = new RestTemplate();
+		String url = UrlBuilder.build(host, DockerAPI.INFO);
+		System.out.println(url);
+		HashMap info = client.getForObject(url, HashMap.class);
+		host.setInfo(info);
+		System.out.println(info);
+		return host;
+	}
+	@RequestMapping("host/images")
+	@ResponseBody
+	private Object hostImages(String id) {
+		DockerHost host = DockerHostManager.get(id);
+		RestTemplate client = new RestTemplate();
+		String url = UrlBuilder.build(host, DockerAPI.IMAGES);
+		List images = client.getForObject(url, ArrayList.class);
+		return images;
+	}
+	@RequestMapping("host/containers")
+	@ResponseBody
+	private Object hostContainers(String id) {
+		DockerHost host = DockerHostManager.get(id);
+		RestTemplate client = new RestTemplate();
+		String url = UrlBuilder.build(host, DockerAPI.CONTAINERS_ALL);
+		List images = client.getForObject(url, ArrayList.class);
+		return images;
+	}
+	@RequestMapping("host/networks")
+	@ResponseBody
+	private Object hostNetworks(String id) {
+		DockerHost host = DockerHostManager.get(id);
+		RestTemplate client = new RestTemplate();
+		String url = UrlBuilder.build(host, DockerAPI.NETWORKS);
+		List images = client.getForObject(url, ArrayList.class);
+		return images;
+	}
+	@RequestMapping("host/add")
+	@ResponseBody
+	private Object addHost(DockerHost host) {
+		if (host!=null) {
+			DockerHostManager.add(host);
+		}
+		return DockerHostManager.getDockerHosts();
+	}
+	@RequestMapping("host/update")
+	@ResponseBody
+	private Object updateHost(DockerHost tmpHost,String key) {
+		DockerHost host = DockerHostManager.get(key);
+		if (host!=null) {
+			host.setHost(tmpHost.getHost());
+			host.setName(tmpHost.getName());
+			host.setPort(tmpHost.getPort());
+			DockerHostManager.add(host);
+		}
+		return DockerHostManager.getDockerHosts();
+	}
+	
+	
 }
