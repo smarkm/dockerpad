@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.json.JSONObject;
 import org.smark.dockerpad.model.DockerHost;
 import org.smark.dockerpad.service.DockerHostManager;
 import org.smark.dockerpad.util.DockerAPI;
