@@ -46,8 +46,9 @@
         </div>
       </div>
       <div class="modal-footer">
+      	<span id="pingRs" class="pull-left"></span>
         <!--<button type="button" class="btn btn-xs btn-default" data-dismiss="modal">Close</button>-->
-         <button type="button" class="btn btn-xs btn-primary">Test Connection</button>
+         <button type="button" class="btn btn-xs btn-primary" ng-click="pingHost()">Test Connection</button>
         <button type="button" class="btn btn-xs btn-primary" ng-click="updateHost()">Save changes</button>
       </div>
     </div><!-- /.modal-content -->

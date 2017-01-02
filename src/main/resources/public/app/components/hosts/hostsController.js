@@ -48,7 +48,10 @@ app.controller('hostsController',function($scope,$http,$rootScope){
 		
 	}
 	$scope.removeHost = function(k){
-		$http.post("/dockerpad/remove",{key:k})
+		if(!confirm("Are you sure remove this Docker Host")){
+			return;
+		}
+		$http.post("/dockerpad/host/remove",{hostId:k})
 			.success(function(rs){
 				$http.get("/dockerpad/dockerhosts").then(function(rs){
 					$scope.hosts = rs.data;
@@ -61,7 +64,18 @@ app.controller('hostsController',function($scope,$http,$rootScope){
 		.success(function(rs){
 			$rootScope.current = $scope.hosts[k];
 		})
-		
-		
+	}
+	$scope.pingHost = function(k){
+		var host = $scope.host;
+		var port = $scope.port;
+		if(host=="" || port==""){alert("host and port can not empty");return}
+		$.post("/dockerpad/host/_ping",{"host":host,"port":port},function(rs){
+			$("#pingRs").empty().append(rs);
+		})
+		/*$http.post("/dockerpad/host/_ping",{"host":host,"port":port})
+		.success(function(rs){
+			console.log(rs)
+			//$scope.pingRs = rs;
+		})*/
 	}
 })

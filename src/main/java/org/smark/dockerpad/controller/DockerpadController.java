@@ -5,10 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONObject;
 import org.smark.dockerpad.model.DockerHost;
 import org.smark.dockerpad.service.DockerHostManager;
 import org.smark.dockerpad.util.DockerAPI;
 import org.smark.dockerpad.util.UrlBuilder;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,7 +37,6 @@ public class DockerpadController {
 		DockerHost host = DockerHostManager.get(id);
 		RestTemplate client = new RestTemplate();
 		String url = UrlBuilder.build(host, DockerAPI.INFO);
-		System.out.println(url);
 		HashMap info = client.getForObject(url, HashMap.class);
 		host.setInfo(info);
 		System.out.println(info);
@@ -87,6 +88,25 @@ public class DockerpadController {
 			DockerHostManager.add(host);
 		}
 		return DockerHostManager.getDockerHosts();
+	}
+	
+	@RequestMapping("host/remove")
+	@ResponseBody
+	private Object removeHost(String hostId) {
+		return DockerHostManager.remove(hostId);
+	}
+	
+	@RequestMapping("host/_ping")
+	@ResponseBody
+	private Object pingHost(DockerHost host) {
+		RestTemplate client = new RestTemplate();
+		if (client.getRequestFactory() instanceof SimpleClientHttpRequestFactory) {
+			SimpleClientHttpRequestFactory cf = (SimpleClientHttpRequestFactory) client.getRequestFactory();
+			cf.setConnectTimeout(3000);
+		}
+		String url = UrlBuilder.build(host, DockerAPI.PING);
+		String object = client.getForObject(url,String.class);
+		return object;
 	}
 	
 	
