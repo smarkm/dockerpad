@@ -1,6 +1,6 @@
-#dockerpad
+#Dockerpad
 ## Intro
-  This project is a Web UI for `Docker`.
+  This project is a Web UI for `Docker`.Current status is : `developing`
   ![image](docs/pad_containers.png)
 ## Get started
 ## Dependancies
