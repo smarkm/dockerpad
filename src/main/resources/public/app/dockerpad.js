@@ -104,5 +104,5 @@ app.config(function($translateProvider) {
     L_F_M_Users: '用户管理',
     L_F_M_About: '关于'
   });
-   $translateProvider.preferredLanguage('zh');
+   $translateProvider.preferredLanguage('en');
 });
