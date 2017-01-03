@@ -100,24 +100,29 @@
 		</div>
 	</div>
 	<div class="tab-pane fade" id="network">
-		<table class="table">
-			<thead>
-				<tr class="">
-					<th>Name</th>
-					<th>Scope</th>
-					<th>Driver</th>
-					<th>ID</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="item in networks"  >
-					<td><a href="" ng-click="showNetwork(item.Id)">{{item.Name}}</a></td>
-					<td>{{item.Scope}}</td>
-					<td>{{item.Driver}}</td>
-					<td>{{item.Id}}</td>
-				</tr>
-			</tbody>
-		</table>
+		<div class="col-md-5">
+			<div id="mynetwork" style="height: 400px;/*border: 1px solid lightgray */"></div>
+		</div>
+		<div class="col-md-7">
+			<table class="table">
+				<thead>
+					<tr class="">
+						<th>Name</th>
+						<th>Scope</th>
+						<th>Driver</th>
+						<th>ID</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in networks"  >
+						<td><a href="" ng-click="showNetwork(item.Id)">{{item.Name}}</a></td>
+						<td>{{item.Scope}}</td>
+						<td>{{item.Driver}}</td>
+						<td>{{item.Id}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 	<div class="tab-pane fade" id="info">
 		<table class="table">
