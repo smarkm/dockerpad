@@ -111,7 +111,7 @@
 			</thead>
 			<tbody>
 				<tr ng-repeat="item in networks"  >
-					<td>{{item.Name}}</td>
+					<td><a href="" ng-click="showNetwork(item.Id)">{{item.Name}}</a></td>
 					<td>{{item.Scope}}</td>
 					<td>{{item.Driver}}</td>
 					<td>{{item.Id}}</td>

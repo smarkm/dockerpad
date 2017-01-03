@@ -64,6 +64,9 @@ app.controller('hostController',function($scope,$http,$rootScope,$routeParams){
 				})
 			})
 	}
+	$scope.showNetwork = function(id){
+		alert(id)
+	}
 	$scope.useHost = function(k){
 		$http.post("/dockerpad/use",{key:k})
 		.success(function(rs){
