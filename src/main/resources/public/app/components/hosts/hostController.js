@@ -28,19 +28,18 @@ app.controller('hostController',function($scope,$http,$rootScope,$routeParams){
 			var networks = rs.data;
 			$scope.networks = networks;
 			$("#networkTitle").text("Networks("+networks.length+")")
-			 var nodes = new vis.DataSet([
-				     {id: 1, label: $scope.host.name,group: 0},
-				     {id: 2, label: 'bridge',group: 2},
-				     {id: 3, label: 'host',group: 2},
-				     {id: 4, label: 'local',group: 2},
-			     ]);
+			var nodes = new vis.DataSet([
+			                             {id: $scope.host.id, label: $scope.host.name,group: 'engine'},
+			                             ]);
+			 var edges = new vis.DataSet([]);
+			for(var i=0;i<networks.length;i++){
+				var nw = networks[i];
+				nodes.add({id: nw.Id,label:nw.Name,group:nw.Driver })
+				edges.add({from: $scope.host.id, to: nw.Id});
+			}
 
 			 // create an array with edges
-			 var edges = new vis.DataSet([
-				     {from: 1, to: 2},
-				     {from: 1, to: 3},
-				     {from: 1, to: 4},
-			     ]);
+			
 
 			// create a network
 			 var container = document.getElementById('mynetwork');
