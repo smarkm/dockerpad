@@ -28,6 +28,31 @@ app.controller('hostController',function($scope,$http,$rootScope,$routeParams){
 			var networks = rs.data;
 			$scope.networks = networks;
 			$("#networkTitle").text("Networks("+networks.length+")")
+			 var nodes = new vis.DataSet([
+				     {id: 1, label: $scope.host.name,group: 0},
+				     {id: 2, label: 'bridge',group: 2},
+				     {id: 3, label: 'host',group: 2},
+				     {id: 4, label: 'local',group: 2},
+			     ]);
+
+			 // create an array with edges
+			 var edges = new vis.DataSet([
+				     {from: 1, to: 2},
+				     {from: 1, to: 3},
+				     {from: 1, to: 4},
+			     ]);
+
+			// create a network
+			 var container = document.getElementById('mynetwork');
+			 var data = {
+					 nodes: nodes,
+					 edges: edges
+			       };
+			 var options = {
+					 nodes: {
+						 shape: 'dot',
+		        },};
+			 var network = new vis.Network(container, data, options);
 		})
 	}
 	$scope.addHost = function(){
@@ -65,7 +90,31 @@ app.controller('hostController',function($scope,$http,$rootScope,$routeParams){
 			})
 	}
 	$scope.showNetwork = function(id){
-		alert(id)
+		 // create an array with nodes
+		  var nodes = new vis.DataSet([
+		    {id: 1, label: 'Node 1',group: 0},
+		    {id: 2, label: 'Node 2',group: 2},
+		    {id: 3, label: 'Node 3',group: 2},
+		    {id: 4, label: 'Node 4',group: 2},
+		    {id: 5, label: 'Node 5',group: 2}
+		  ]);
+
+		  // create an array with edges
+		  var edges = new vis.DataSet([
+		    {from: 1, to: 3},
+		    {from: 1, to: 2},
+		    {from: 2, to: 4},
+		    {from: 2, to: 5}
+		  ]);
+
+		  // create a network
+		  var container = document.getElementById('mynetwork');
+		  var data = {
+		    nodes: nodes,
+		    edges: edges
+		  };
+		  var options = {};
+		  var network = new vis.Network(container, data, options);
 	}
 	$scope.useHost = function(k){
 		$http.post("/dockerpad/use",{key:k})
@@ -101,4 +150,4 @@ app.controller('hostController',function($scope,$http,$rootScope,$routeParams){
             // WRITE
         chart.write("containerChart");
 	}
-})
+});
