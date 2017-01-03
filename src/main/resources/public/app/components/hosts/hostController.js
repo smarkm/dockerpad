@@ -34,7 +34,9 @@ app.controller('hostController',function($scope,$http,$rootScope,$routeParams){
 			 var edges = new vis.DataSet([]);
 			for(var i=0;i<networks.length;i++){
 				var nw = networks[i];
-				nodes.add({id: nw.Id,label:nw.Name,group:nw.Driver })
+				var net = "";
+				if(nw.IPAM.Config.length>0){net="("+nw.IPAM.Config[0].Subnet+")";}
+				nodes.add({id: nw.Id,label:nw.Name+net,group:nw.Driver })
 				edges.add({from: $scope.host.id, to: nw.Id});
 			}
 
