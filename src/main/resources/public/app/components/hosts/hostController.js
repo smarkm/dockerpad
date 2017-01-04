@@ -38,6 +38,14 @@ app.controller('hostController',function($scope,$http,$rootScope,$routeParams){
 				if(nw.IPAM.Config.length>0){net="("+nw.IPAM.Config[0].Subnet+")";}
 				nodes.add({id: nw.Id,label:nw.Name+net,group:nw.Driver })
 				edges.add({from: $scope.host.id, to: nw.Id});
+				net = "";
+				for(k in nw.Containers){
+					var c = nw.Containers[k];
+					console.log(c)
+					net="("+c.IPv4Address+")";
+					nodes.add({id: k,label:c.Name+net,group:nw.Driver })
+					edges.add({from: nw.Id, to: k});
+				}
 			}
 
 			 // create an array with edges
